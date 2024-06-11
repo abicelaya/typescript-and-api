@@ -1,24 +1,12 @@
-interface Data {
-  id: string;
-  joke: string;
-  status: number;
-}
-
-function printJoke(data: Data) {
-  const jokePlaceholder = document.querySelector('#joke-random');
-
-  if (jokePlaceholder) {
-    jokePlaceholder.innerHTML = data.joke;
-  }
-}
-
-export default function fetchChistes(): void {
+export default async function fetchChistes(): Promise<object> {
   const urlChistes: string = 'https://icanhazdadjoke.com/';
-  fetch(urlChistes, {
+  const result = await fetch(urlChistes, {
     headers: {
       Accept: 'application/json',
     },
-  })
-    .then(res => res.json())
-    .then(data => printJoke(data));
+  });
+
+  const joke = await result.json();
+
+  return joke;
 }
