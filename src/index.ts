@@ -1,5 +1,6 @@
 import fetchChistes from './fetch_chistes.js';
 import generarReport from './valoracion_chistes.js';
+import fetchMeteorologico from './fetch_meteorologico.js';
 
 //Definicion de tipos de datos
 interface Joke {
@@ -16,7 +17,27 @@ export interface ReportJokes {
 //Definir variables globales. Y asignamos el valor inicial
 const reportJokes: ReportJokes[] = [];
 let chiste = await fetchChistes();
+let tiempo = await fetchMeteorologico();
 let reportChiste = generarReport(chiste, 0, new Date());
+
+// Imprimo tiempo
+function printWeather(data: any) {
+  const contenedorTiempo = document.querySelector('#tiempo');
+  const contenedorImagen = document.querySelector(
+    '#imagen-tiempo'
+  ) as HTMLImageElement;
+  const contenedorGrados = document.querySelector('#grados');
+  if (contenedorTiempo) {
+    contenedorTiempo.textContent = data.current.condition.text;
+  }
+  if (contenedorImagen) {
+    contenedorImagen.src = data.current.condition.icon;
+  }
+  if (contenedorGrados) {
+    contenedorGrados.textContent = data.current.temp_c + 'ºC';
+  }
+}
+printWeather(tiempo);
 
 // Acciones que pasan cuando clicko next
 const buttonNext = document.querySelector('#next-joke');
