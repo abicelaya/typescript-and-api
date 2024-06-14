@@ -20,25 +20,6 @@ let chiste = await fetchChistes();
 let tiempo = await fetchMeteorologico();
 let reportChiste = generarReport(chiste, 0, new Date());
 
-// Imprimo tiempo
-function printWeather(data: any) {
-  const contenedorTiempo = document.querySelector('#tiempo');
-  const contenedorImagen = document.querySelector(
-    '#imagen-tiempo'
-  ) as HTMLImageElement;
-  const contenedorGrados = document.querySelector('#grados');
-  if (contenedorTiempo) {
-    contenedorTiempo.textContent = data.current.condition.text;
-  }
-  if (contenedorImagen) {
-    contenedorImagen.src = data.current.condition.icon;
-  }
-  if (contenedorGrados) {
-    contenedorGrados.textContent = data.current.temp_c + 'ºC';
-  }
-}
-printWeather(tiempo);
-
 // Acciones que pasan cuando clicko next
 const buttonNext = document.querySelector('#next-joke');
 buttonNext?.addEventListener('click', async e => {
@@ -77,3 +58,21 @@ function printJoke(data: Joke) {
   }
 }
 printJoke(chiste as Joke);
+
+function printWeather(data: any) {
+  const contenedorTiempo = document.querySelector('#tiempo');
+  const contenedorImagen = document.querySelector(
+    '#imagen-tiempo'
+  ) as HTMLImageElement;
+  const contenedorGrados = document.querySelector('#grados');
+  if (contenedorTiempo) {
+    contenedorTiempo.textContent = data.current.condition.text;
+  }
+  if (contenedorImagen) {
+    contenedorImagen.src = data.current.condition.icon;
+  }
+  if (contenedorGrados) {
+    contenedorGrados.textContent = data.current.temp_c + 'ºC';
+  }
+}
+printWeather(tiempo);

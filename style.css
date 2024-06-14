@@ -1,17 +1,37 @@
 body {
-  background: linear-gradient(to right, #ffd452, #544a7d);
-}
-
-.navbar {
-  padding: 10px;
+  background-image: url(./img/magicpattern-seamless-patterns-1718370803974.png);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #tiempo,
 #grados {
-  color: white;
+  color: rgb(246, 243, 243);
+  padding-right: 10px;
+  padding-top: 20px;
+  font-size: larger;
 }
 
 #imagen-tiempo {
   width: 50px;
   height: 50px;
+}
+
+.card-body {
+  background-image: (url(./img/css-pattern-by-magicpattern.png));
+  width: 30rem;
+  height: 20rem;
+  box-shadow: 0 0 20px lightslategrey;
+}
+
+.score-button {
+  width: 3.125em;
+  height: 3.125em;
+  cursor: pointer;
+  margin: 0 0.625em;
+  border-radius: 50%;
+  border: 0.125em solid black;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
